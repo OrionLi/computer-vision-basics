@@ -1,88 +1,86 @@
-# Experiment 1: Image Recognition
+# 实验一：图像识别
 
-Student: 李弢阳
-ID: 202211621213
+学生：李弢阳
+学号：202211621213
 
-This experiment focuses on image recognition using Convolutional Neural Networks (CNNs) with PyTorch.
-The goal is to define, train, and evaluate a CNN model for classifying images from the CIFAR-10 dataset.
-The final script also saves the trained model and shows some example predictions.
+本实验聚焦于使用 PyTorch 中的卷积神经网络（CNN）进行图像识别。目标是定义、训练并评估一个 CNN 模型，用于对 CIFAR - 10 数据集的图像进行分类。最终脚本还会保存训练好的模型，并展示一些示例预测结果。
 
-## Directory Structure
-- `data/`: Stores the CIFAR-10 dataset (downloaded automatically by the script).
-- `models/`: Stores the saved trained model weights (e.g., `simple_cnn_cifar10.pth`).
-- `src/`: Contains the Python script for the experiment.
-  - `train.py`: A single, consolidated script that handles:
-      - CIFAR-10 dataset loading, preprocessing, and augmentation (with automatic download if not present).
-      - Definition of the `SimpleCNN` model architecture.
-      - Training the model on the CIFAR-10 training set.
-      - Evaluating the trained model on the test set.
-      - Saving the trained model weights.
-      - Displaying a few example predictions from the test set with their actual vs. predicted labels.
-      - Providing notes on interpreting the training process.
-- `README.md`: This file, providing an overview of the experiment.
+## 目录结构
+- `data/`：存储 CIFAR - 10 数据集（脚本会自动下载）。
+- `models/`：存储保存的训练好的模型权重（例如，`simple_cnn_cifar10.pth`）。
+- `src/`：包含实验的 Python 脚本。
+  - `train.py`：一个整合的脚本，负责处理以下任务：
+      - CIFAR - 10 数据集的加载、预处理和增强（若数据集不存在则自动下载）。
+      - 定义 `SimpleCNN` 模型架构。
+      - 在 CIFAR - 10 训练集上训练模型。
+      - 在测试集上评估训练好的模型。
+      - 保存训练好的模型权重。
+      - 展示测试集中的一些示例预测结果，显示实际标签与预测标签。
+      - 提供关于解释训练过程的说明。
+- `README.md`：即本文件，提供实验的概述。
 
-## Setup
+## 环境设置
 
-### PyTorch Installation
-Ensure you have PyTorch installed. If not, a typical installation command is:
-\`\`\`bash
+### 安装 PyTorch
+确保你已经安装了 PyTorch。如果没有安装，典型的安装命令如下：
+```bash
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-\`\`\`
-(Note: `cu128` implies a CUDA 12.8 compatible build. Adjust this command if you are using a CPU-only environment or a different CUDA version. The script will attempt to use CUDA if available, otherwise it will fall back to CPU.)
+```
+（注意：`cu128` 表示与 CUDA 12.8 兼容的版本。如果你使用的是仅支持 CPU 的环境或其他 CUDA 版本，请调整此命令。脚本会尝试使用 CUDA（如果可用），否则将回退到使用 CPU。）
 
-You might also need `matplotlib` if you choose to uncomment the image display part in `src/train.py`:
-\`\`\`bash
+如果你选择取消 `src/train.py` 中图像显示部分的注释，可能还需要安装 `matplotlib`：
+```bash
 pip3 install matplotlib numpy
-\`\`\`
-(`numpy` is generally a core dependency for PyTorch and data handling.)
+```
+（`numpy` 通常是 PyTorch 和数据处理的核心依赖项。）
 
-## Running Experiment 1
+## 运行实验一
 
-1.  **Navigate to the Experiment Directory**:
-    Open your terminal and change to the `experiment1_image_recognition` directory.
-    \`\`\`bash
+1. **导航到实验目录**：
+    打开终端并切换到 `experiment1_image_recognition` 目录。
+    ```bash
     cd experiment1_image_recognition
-    \`\`\`
+    ```
 
-2.  **Run the Training Script**:
-    Execute the `train.py` script using Python:
-    \`\`\`bash
+2. **运行训练脚本**：
+    使用 Python 执行 `train.py` 脚本：
+    ```bash
     python src/train.py
-    \`\`\`
+    ```
 
-    This single command will perform all steps of the experiment:
-    *   **Data Preparation**: Initializes data transformations and attempts to download/load the CIFAR-10 dataset into the `data/` directory.
-    *   **Model Initialization**: Defines the `SimpleCNN` and prepares it for training on the available device (CUDA or CPU).
-    *   **Training**: Trains the model for `NUM_EPOCHS` (default is 10, can be changed in the script). Training progress (loss per 100 mini-batches, accuracy per epoch) will be printed to the console.
-    *   **Model Saving**: Saves the trained model's state dictionary to `models/simple_cnn_cifar10.pth`.
-    *   **Evaluation**: Evaluates the model on the CIFAR-10 test set and prints the final test accuracy and average loss.
-    *   **Example Predictions**: Prints a few example predictions from the test set, showing actual vs. predicted labels.
-    *   **Interpretation Notes**: Provides a summary of how to interpret the training and evaluation metrics.
+    这一个命令将执行实验的所有步骤：
+    * **数据准备**：初始化数据转换，并尝试将 CIFAR - 10 数据集下载/加载到 `data/` 目录中。
+    * **模型初始化**：定义 `SimpleCNN` 模型，并为其在可用设备（CUDA 或 CPU）上进行训练做准备。
+    * **训练**：对模型进行 `NUM_EPOCHS` 轮训练（默认值为 10，可以在脚本中修改）。训练进度（每 100 个小批量的损失、每个 epoch 的准确率）将打印到控制台。
+    * **模型保存**：将训练好的模型的状态字典保存到 `models/simple_cnn_cifar10.pth`。
+    * **评估**：在 CIFAR - 10 测试集上评估模型，并打印最终的测试准确率和平均损失。
+    * **示例预测**：打印测试集中的一些示例预测结果，显示实际标签与预测标签。
+    * **解释说明**：提供关于如何解释训练和评估指标的总结。
 
-### Expected Output Sequence
-When you run `python src/train.py`, you should expect to see:
-1.  Device configuration (e.g., "Using device: cuda").
-2.  Messages related to CIFAR-10 dataset download/loading.
-3.  Training progress:
-    *   Loss updates every 100 mini-batches for each epoch.
-    *   Overall training accuracy at the end of each epoch.
-4.  "Finished Training." message.
-5.  Confirmation that the model has been saved (e.g., "Model saved to ../models/simple_cnn_cifar10.pth").
-6.  Test set evaluation results (accuracy and average loss).
-7.  A section with example predictions (e.g., "Image #1: Actual: cat | Predicted: cat (Correct)").
-8.  Notes on interpreting the training process.
+### 预期输出顺序
+当你运行 `python src/train.py` 时，应该会看到以下内容：
+1. 设备配置信息（例如，“使用设备：cuda”）。
+2. 与 CIFAR - 10 数据集下载/加载相关的消息。
+3. 训练进度：
+    * 每个 epoch 中每 100 个小批量的损失更新。
+    * 每个 epoch 结束时的整体训练准确率。
+4. “训练完成。”消息。
+5. 模型已保存的确认信息（例如，“模型已保存到 ../models/simple_cnn_cifar10.pth”）。
+6. 测试集评估结果（准确率和平均损失）。
+7. 包含示例预测结果的部分（例如，“图像 #1：实际：猫 | 预测：猫（正确）”）。
+8. 关于解释训练过程的说明。
 
-### Interpreting Training and Evaluation Metrics (from `train.py` output)
+### 解释训练和评估指标（来自 `train.py` 的输出）
 
-The `train.py` script outputs several key metrics:
-- **Training Loss (per mini-batch and epoch):** A decreasing loss indicates the model is learning from the training data.
-- **Training Accuracy (per epoch):** Shows how well the model is fitting the data it's being trained on.
-- **Test Accuracy (at the end):** This is a crucial metric, indicating how well the model generalizes to new, unseen data. A significant gap between high training accuracy and lower test accuracy suggests potential overfitting.
-- **Average Test Loss:** Similar to test accuracy, this shows the model's performance on unseen data.
+`train.py` 脚本会输出几个关键指标：
+- **训练损失（每小批量和每个 epoch）**：损失值下降表明模型正在从训练数据中学习。
+- **训练准确率（每个 epoch）**：显示模型对训练数据的拟合程度。
+- **测试准确率（最后输出）**：这是一个关键指标，表明模型对新的、未见过的数据的泛化能力。如果训练准确率高而测试准确率低，可能表明存在过拟合问题。
+- **平均测试损失**：与测试准确率类似，显示模型在未见过的数据上的性能。
 
-Ideally, both training and test accuracies should increase and then stabilize at a high value, while the loss values (both training and test) should decrease and stabilize at a low value. These metrics help in understanding model performance and in making decisions about hyperparameter tuning (like `LEARNING_RATE`, `NUM_EPOCHS`, `BATCH_SIZE` defined in `train.py`) or model architecture changes (defined in the `SimpleCNN` class within `train.py`).
+理想情况下，训练和测试准确率都应该上升并最终稳定在较高值，而损失值（训练和测试）应该下降并稳定在较低值。这些指标有助于理解模型性能，并为超参数调整（如 `train.py` 中定义的 `LEARNING_RATE`、`NUM_EPOCHS`、`BATCH_SIZE`）或模型架构更改（在 `train.py` 中的 `SimpleCNN` 类中定义）提供决策依据。
 
-### Notes
-- **Execution Time**: Training a CNN can take some time, especially if running on a CPU or for many epochs. For quick testing, you can reduce `NUM_EPOCHS` in `src/train.py`.
-- **Adjustable Parameters**: Key parameters like learning rate, number of epochs, batch size, and the model architecture itself are all defined within `src/train.py` and can be modified for experimentation.
-- **Matplotlib for Image Display**: The script includes commented-out code to visually display example images with their predictions using Matplotlib. If you wish to use this, ensure Matplotlib is installed and you are in an environment that supports GUI pop-ups. Uncomment the relevant section in the `show_example_predictions_after_training` function within `src/train.py`.
+### 注意事项
+- **执行时间**：训练 CNN 可能需要一些时间，特别是在使用 CPU 或进行多轮训练时。为了快速测试，可以在 `src/train.py` 中减少 `NUM_EPOCHS`。
+- **可调整参数**：关键参数（如学习率、训练轮数、批量大小和模型架构本身）都在 `src/train.py` 中定义，可以进行修改以进行实验。
+- **使用 Matplotlib 显示图像**：脚本中包含了使用 Matplotlib 直观显示示例图像及其预测结果的注释代码。如果你想使用此功能，请确保已安装 Matplotlib，并且你所在的环境支持 GUI 弹出窗口。取消 `src/train.py` 中 `show_example_predictions_after_training` 函数内相关部分的注释。

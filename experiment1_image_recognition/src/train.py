@@ -1,5 +1,5 @@
-# Name: 李弢阳
-# Student ID: 202211621213
+# 姓名: 
+# 学号: 
 
 import torch
 import torch.optim as optim

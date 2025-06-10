@@ -1,5 +1,5 @@
-# 姓名: 李弢阳
-# 学号: 202211621213
+# 姓名: 
+# 学号: 
 
 import torch
 import torchvision
