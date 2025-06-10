@@ -21,9 +21,15 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 (Note: `cu128` implies a CUDA 12.8 compatible build. Adjust if using CPU or a different CUDA version. The object detection script will attempt to use CUDA if available, otherwise CPU.)
 
 ### Additional Libraries
-You might need OpenCV for image manipulation (reading images, drawing bounding boxes, saving results) and Matplotlib for displaying images (optional, mainly for interactive sessions).
+The script uses `Pillow` (PIL) for image loading and drawing bounding boxes. `requests` is used for downloading the sample image, and `numpy` is a general dependency. These are typically installed with PyTorch or are common Python libraries.
+If you wish to extend the script or work more broadly with image data, you might also find these useful:
+- `opencv-python`: For more advanced image/video processing.
+- `matplotlib`: For displaying images within Python environments (e.g., Jupyter notebooks).
+
+If not already installed, Pillow can be installed via pip:
 \`\`\`bash
-pip3 install opencv-python matplotlib
+pip3 install Pillow requests numpy # Ensure these core dependencies are present
+# pip3 install opencv-python matplotlib # Optional extras
 \`\`\`
 
 ## Experiment Overview

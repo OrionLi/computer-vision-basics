@@ -253,15 +253,22 @@ if __name__ == "__main__":
 
     model = load_model(device)
 
+    # --- Image Preparation ---
+    # Download a sample image if the default one is not found, or use the existing one.
     image_path_to_process = download_sample_image_if_needed(IMAGE_DIR, DEFAULT_IMAGE_FILENAME, DEFAULT_IMAGE_URL)
 
-    print(f"\nProcessing image: {image_path_to_process}")
+    # --- Image Preprocessing ---
+    print(f"\nLoading and preprocessing image: {image_path_to_process}...")
     pil_img, img_tensor = preprocess_image(image_path_to_process)
 
+    # --- Object Detection ---
     if pil_img and img_tensor is not None:
+        print("Performing object detection...")
         predictions = predict_objects(model, img_tensor, device)
 
+        # --- Filtering and Displaying Results ---
         if predictions:
+            print("Filtering predictions...")
             boxes, labels, scores = filter_predictions(predictions, CONFIDENCE_THRESHOLD)
 
             print(f"\nFound {len(boxes)} objects with confidence > {CONFIDENCE_THRESHOLD}:")
